@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bitácora de Emprendimiento Épico 😂</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    /* Variables de colores */
+    :root {
+      --azul-neon: #00f2ff;
+      --azul-oscuro: #0a192f;
+      --azul-medio: #172a45;
+      --verde-neon: #00ff9d;
+      --verde-oscuro: #0c4d27;
+      --negro: #02040a;
+      --blanco: #f0f8ff;
+    }
+    
+    /* Animaciones personalizadas */
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+    
+    @keyframes shake {
+      0%, 100% { transform: rotate(0deg); }
+      25% { transform: rotate(5deg); }
+      75% { transform: rotate(-5deg); }
+    }
+    
+    @keyframes neon-glow {
+      0% { text-shadow: 0 0 5px var(--verde-neon), 0 0 10px var(--verde-neon); }
+      50% { text-shadow: 0 0 10px var(--azul-neon), 0 0 20px var(--azul-neon); }
+      100% { text-shadow: 0 0 5px var(--verde-neon), 0 0 10px var(--verde-neon); }
+    }
+    
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+      100% { transform: scale(1); }
+    }
+    
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    
+    /* Estilos base */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, var(--azul-oscuro), var(--negro));
+      color: var(--blanco);
+      min-height: 100vh;
+      padding: 1rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      overflow-x: hidden;
+      position: relative;
+    }
+    
+    /* Efecto de partículas de fondo */
+    body::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: 
+        radial-gradient(circle at 20% 30%, rgba(0, 242, 255, 0.1) 0%, transparent 15%),
+        radial-gradient(circle at 80% 70%, rgba(0, 255, 157, 0.1) 0%, transparent 15%);
+      pointer-events: none;
+      z-index: -1;
+    }
+    
+    /* Cabecera con animaciones */
+    header {
+      text-align: center;
+      margin-bottom: 1.5rem;
+      padding: 1rem;
+      width: 100%;
+      max-width: 600px;
+      background: rgba(10, 25, 47, 0.7);
+      border-radius: 20px;
+      border: 2px solid var(--azul-neon);
+      box-shadow: 0 0 15px rgba(0, 242, 255, 0.5);
+      animation: pulse 3s infinite;
+    }
+    
+    header h1 {
+      font-size: 2.2rem;
+      margin: 0;
+      color: var(--verde-neon);
+      animation: neon-glow 2s infinite;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+    
+    header p {
+      font-size: 1.1rem;
+      opacity: 0.9;
+      margin-top: 0.5rem;
+      color: var(--azul-neon);
+    }
+    
+    .emoji-animation {
+      display: inline-block;
+      animation: float 3s ease-in-out infinite;
+    }
+    
+    /* Pasos del proyecto con animaciones individuales */
+    .steps {
+      background: linear-gradient(145deg, var(--azul-medio), var(--azul-oscuro));
+      border-radius: 20px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5), 0 0 15px rgba(0, 242, 255, 0.3);
+      padding: 1.5rem;
+      width: 100%;
+      max-width: 600px;
+      margin-bottom: 1.5rem;
+      border: 2px solid var(--azul-neon);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .steps::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 5px;
+      background: linear-gradient(90deg, var(--azul-neon), var(--verde-neon));
+      animation: progress-bar 10s linear infinite;
+    }
+    
+    @keyframes progress-bar {
+      0% { width: 0%; }
+      100% { width: 100%; }
+    }
+    
+    .steps h2 {
+      font-size: 1.8rem;
+      color: var(--verde-neon);
+      text-align: center;
+      margin-bottom: 1.5rem;
+      text-shadow: 0 0 10px rgba(0, 255, 157, 0.7);
+    }
+    
+    .steps ol {
+      padding-left: 1.5rem;
+      margin: 0;
+      counter-reset: step-counter;
+    }
+    
+    .steps li {
+      margin: 1.2rem 0;
+      line-height: 1.6;
+      position: relative;
+      padding-left: 3.5rem;
+      font-size: 1.1rem;
+      animation: fadeIn 0.5s forwards;
+      opacity: 0;
+      transform: translateX(-20px);
+      transition: all 0.3s ease;
+    }
+    
+    @keyframes fadeIn {
+      to { opacity: 1; transform: translateX(0); }
+    }
+    
+    .steps li:nth-child(1) { animation-delay: 0.1s; }
+    .steps li:nth-child(2) { animation-delay: 0.2s; }
+    .steps li:nth-child(3) { animation-delay: 0.3s; }
+    .steps li:nth-child(4) { animation-delay: 0.4s; }
+    .steps li:nth-child(5) { animation-delay: 0.5s; }
+    .steps li:nth-child(6) { animation-delay: 0.6s; }
+    .steps li:nth-child(7) { animation-delay: 0.7s; }
+    .steps li:nth-child(8) { animation-delay: 0.8s; }
+    .steps li:nth-child(9) { animation-delay: 0.9s; }
+    .steps li:nth-child(10) { animation-delay: 1.0s; }
+    
+    .steps li::before {
+      counter-increment: step-counter;
+      content: counter(step-counter);
+      position: absolute;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 2.5rem;
+      height: 2.5rem;
+      background: linear-gradient(145deg, var(--azul-neon), var(--verde-neon));
+      color: var(--azul-oscuro);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      font-size: 1.2rem;
+      box-shadow: 0 0 10px rgba(0, 242, 255, 0.5);
+      transition: all 0.3s ease;
+    }
+    
+    .steps li:hover::before {
+      transform: translateY(-50%) scale(1.1);
+      box-shadow: 0 0 15px var(--azul-neon);
+      animation: spin 0.5s linear;
+    }
+    
+    .steps li:hover {
+      color: var(--verde-neon);
+      transform: translateX(5px);
+    }
+    
+    /* Información del proyecto */
+    .project-info {
+      background: linear-gradient(145deg, var(--verde-oscuro), var(--azul-oscuro));
+      border-radius: 20px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5), 0 0 15px rgba(0, 255, 157, 0.3);
+      padding: 1.5rem;
+      margin-top: 1rem;
+      width: 100%;
+      max-width: 600px;
+      border: 2px solid var(--verde-neon);
+      position: relative;
+      overflow: hidden;
+      animation: pulse 4s infinite;
+    }
+    
+    .project-info::before {
+      content: "🌈";
+      position: absolute;
+      font-size: 8rem;
+      opacity: 0.1;
+      top: -30px;
+      right: -30px;
+      animation: spin 20s linear infinite;
+    }
+    
+    .project-info h2 {
+      font-size: 1.8rem;
+      margin-top: 0;
+      color: var(--azul-neon);
+      text-shadow: 0 0 10px rgba(0, 242, 255, 0.7);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    
+    .project-info p {
+      margin: 1rem 0;
+      font-size: 1.1rem;
+      line-height: 1.6;
+      position: relative;
+      padding-left: 1.5rem;
+    }
+    
+    .project-info p::before {
+      content: "➡️";
+      position: absolute;
+      left: 0;
+      top: 0;
+      animation: shake 0.5s infinite;
+    }
+    
+    .project-info p:last-child {
+      color: var(--verde-neon);
+      font-weight: bold;
+      font-size: 1.2rem;
+      text-align: center;
+      padding: 0.8rem;
+      background: rgba(0, 0, 0, 0.3);
+      border-radius: 10px;
+      border: 1px solid var(--azul-neon);
+      animation: neon-glow 3s infinite;
+    }
+    
+    /* Contenedor de imagen con efectos */
+    .image-container {
+      margin-top: 2rem;
+      width: 100%;
+      max-width: 400px;
+      overflow: hidden;
+      border-radius: 20px;
+      box-shadow: 0 0 20px rgba(0, 242, 255, 0.5), 0 0 40px rgba(0, 255, 157, 0.3);
+      position: relative;
+      border: 3px solid var(--azul-neon);
+      transition: all 0.5s ease;
+      animation: float 6s ease-in-out infinite;
+    }
+    
+    .image-container::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(45deg, rgba(0, 242, 255, 0.2), rgba(0, 255, 157, 0.2));
+      z-index: 1;
+      pointer-events: none;
+    }
+    
+    .image-container img {
+      width: 100%;
+      display: block;
+      transition: transform 0.5s ease;
+    }
+    
+    .image-container:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 30px var(--azul-neon), 0 0 50px var(--verde-neon);
+    }
+    
+    .image-container:hover img {
+      transform: scale(1.1);
+    }
+    
+    /* Nota humorística */
+    .funny-note {
+      margin-top: 1.5rem;
+      padding: 1rem;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 15px;
+      border: 2px dashed var(--verde-neon);
+      text-align: center;
+      max-width: 500px;
+      font-style: italic;
+      color: var(--azul-neon);
+      animation: shake 2s infinite;
+    }
+    
+    /* Botón épico */
+    .epic-button {
+      margin-top: 1.5rem;
+      padding: 0.8rem 2rem;
+      background: linear-gradient(90deg, var(--azul-neon), var(--verde-neon));
+      color: var(--azul-oscuro);
+      border: none;
+      border-radius: 50px;
+      font-size: 1.2rem;
+      font-weight: bold;
+      cursor: pointer;
+      box-shadow: 0 5px 15px rgba(0, 242, 255, 0.4);
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+      animation: pulse 2s infinite;
+    }
+    
+    .epic-button::before {
+      content: "";
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+      transform: rotate(45deg);
+      transition: all 0.5s ease;
+    }
+    
+    .epic-button:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 20px rgba(0, 242, 255, 0.7);
+    }
+    
+    .epic-button:hover::before {
+      left: 100%;
+    }
+    
+    .epic-button:active {
+      transform: translateY(2px);
+    }
+    
+    /* Footer */
+    footer {
+      margin-top: 2rem;
+      text-align: center;
+      font-size: 0.9rem;
+      color: var(--azul-neon);
+      opacity: 0.8;
+      padding: 1rem;
+      width: 100%;
+      max-width: 600px;
+    }
+    
+    /* Efectos de confeti */
+    .confetti {
+      position: fixed;
+      width: 10px;
+      height: 10px;
+      background: var(--azul-neon);
+      top: -10px;
+      opacity: 0;
+      z-index: 1000;
+      pointer-events: none;
+    }
+    
+    /* Responsive para móviles */
+    @media (max-width: 600px) {
+      header h1 {
+        font-size: 1.8rem;
+      }
+      
+      .steps, .project-info, .image-container {
+        max-width: 100%;
+      }
+      
+      .steps li {
+        padding-left: 2.8rem;
+        font-size: 1rem;
+      }
+      
+      .steps li::before {
+        width: 2rem;
+        height: 2rem;
+        font-size: 1rem;
+      }
+      
+      .project-info h2 {
+        font-size: 1.5rem;
+      }
+    }
+    
+    /* Efecto de cursor personalizado */
+    body {
+      cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='30' viewBox='0 0 24 30'%3E%3Cpath fill='%2300f2ff' d='M12,3C8.1,3,5,6.1,5,10c0,3.9,3.1,7,7,7s7-3.1,7-7C19,6.1,15.9,3,12,3z'/%3E%3C/svg%3E"), auto;
+    }
+  </style>
+</head>
+<body>
+  <!-- Efectos de confeti -->
+  <div class="confetti-container"></div>
+  
+  <header>
+    <h1>
+      <span class="emoji-animation">📓</span> 
+      Bitácora Épica Número Uno 
+      <span class="emoji-animation">🚀</span>
+    </h1>
+    <p>¡Preparando el emprendimiento más loco del año! <span class="emoji-animation">😂</span></p>
+  </header>
+
+  <div class="steps">
+    <h2><i class="fas fa-list-ol"></i> Plan Maestro</h2>
+    <ol>
+      <li>Sacarle la foto con estilo</li>
+      <li>Abrir Tinder con valor</li>
+      <li>Conseguir una doña que valga la pena</li>
+      <li>Comprar ropa nueva (¡imprescindible!)</li>
+      <li>Arreglar la barba como un profesional</li>
+      <li>Generar la cita perfecta</li>
+      <li>Despejar la X: arreglar nuestro proyecto</li>
+      <li>Enviar a la batalla con todo</li>
+      <li>Que el proyecto vuelva al lugar de origen (¡vivo!)</li>
+      <li>Analizar resultados del proyecto con lupa</li>
+    </ol>
+  </div>
+
+  <div class="project-info">
+    <h2><i class="fas fa-project-diagram"></i> Proyecto Ultra Secreto: Porno Gay 🌈</h2>
+    <p><strong>Objetivo:</strong> Hacer que nuestro sujeto conozca nuevas personas y deje de estar con su pareja actual.</p>
+    <p><strong>Método:</strong> Combinación de psicología inversa, memes virales y suerte del principiante.</p>
+    <p><strong>Recursos:</strong> 1 teléfono con cámara, ropa elegante, app de citas y mucha actitud.</p>
+    <p>¡Plan finalizado, arrancamos esta semana! ¡Que Dios nos ayude!</p>
+  </div>
+
+  <div class="image-container">
+    <img src="1.jpeg" alt="Imagen épica del proyecto">
+  </div>
+  
+  <button class="epic-button" id="lanzarBtn">
+    <i class="fas fa-rocket"></i> ¡LANZAR PROYECTO! 
+  </button>
+  
+  <div class="funny-note">
+    <p>⚠️ Advertencia: Este plan tiene un 0.5% de probabilidad de éxito y un 99.5% de probabilidad de acabar en anécdota para el bar. ⚠️</p>
+  </div>
+  
+  <footer>
+    <p>Bitácora Épica v2.0 | © 2023 Equipo de Operaciones Secretas</p>
+  </footer>
+
+  <script>
+    // Función para crear confeti
+    function crearConfeti() {
+      const colores = ['#00f2ff', '#00ff9d', '#ffffff', '#ff00ff', '#ffff00'];
+      const contenedor = document.querySelector('.confetti-container');
+      
+      // Eliminar confeti existente
+      contenedor.innerHTML = '';
+      
+      // Crear 100 piezas de confeti
+      for (let i = 0; i < 100; i++) {
+        const confeti = document.createElement('div');
+        confeti.classList.add('confetti');
+        
+        // Propiedades aleatorias
+        const color = colores[Math.floor(Math.random() * colores.length)];
+        const size = Math.random() * 10 + 5;
+        const posX = Math.random() * window.innerWidth;
+        const duration = Math.random() * 3 + 2;
+        const delay = Math.random() * 2;
+        
+        confeti.style.width = `${size}px`;
+        confeti.style.height = `${size}px`;
+        confeti.style.backgroundColor = color;
+        confeti.style.left = `${posX}px`;
+        confeti.style.animation = `fall ${duration}s linear ${delay}s forwards`;
+        
+        // Crear keyframes dinámicamente
+        const style = document.createElement('style');
+        style.textContent = `
+          @keyframes fall {
+            0% { 
+              top: -20px; 
+              opacity: 1;
+              transform: rotate(0deg);
+            }
+            100% { 
+              top: ${window.innerHeight}px; 
+              opacity: 0;
+              transform: rotate(${Math.random() * 360}deg);
+            }
+          }
+        `;
+        document.head.appendChild(style);
+        
+        contenedor.appendChild(confeti);
+        
+        // Eliminar confeti después de la animación
+        setTimeout(() => {
+          confeti.remove();
+          style.remove();
+        }, (duration + delay) * 1000);
+      }
+    }
+    
+    // Efecto al pasar el mouse sobre elementos
+    document.querySelectorAll('.steps li, .project-info, .image-container').forEach(item => {
+      item.addEventListener('mouseenter', () => {
+        crearConfeti();
+      });
+    });
+    
+    // Botón de lanzamiento épico
+    document.getElementById('lanzarBtn').addEventListener('click', function() {
+      crearConfeti();
+      
+      // Efecto visual en el botón
+      this.innerHTML = '<i class="fas fa-bomb"></i> ¡PROYECTO LANZADO!';
+      this.style.background = 'linear-gradient(90deg, #ff0000, #ff9900)';
+      
+      // Mostrar mensaje épico
+      setTimeout(() => {
+        alert('🚀¡PROYECTO EN MARCHA!🚀\n\nPrepárense para lo nunca antes visto...\n\n¡Dios nos coja confesados! 😂');
+      }, 800);
+    });
+    
+    // Animación inicial de los pasos
+    setTimeout(() => {
+      document.querySelectorAll('.steps li').forEach((li, index) => {
+        setTimeout(() => {
+          li.style.animation = 'fadeIn 0.5s forwards';
+        }, index * 150);
+      });
+    }, 500);
+    
+    // Efecto de cursor personalizado
+    document.addEventListener('mousemove', function(e) {
+      const cursorEffect = document.createElement('div');
+      cursorEffect.className = 'cursor-effect';
+      cursorEffect.style.cssText = `
+        position: fixed;
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: var(--verde-neon);
+        box-shadow: 0 0 10px var(--azul-neon);
+        top: ${e.clientY - 5}px;
+        left: ${e.clientX - 5}px;
+        pointer-events: none;
+        z-index: 9999;
+        animation: cursorPulse 0.5s forwards;
+      `;
+      
+      document.body.appendChild(cursorEffect);
+      
+      // Eliminar después de la animación
+      setTimeout(() => {
+        cursorEffect.remove();
+      }, 500);
+    });
+    
+    // Crear keyframes para cursor dinámicamente
+    const cursorStyle = document.createElement('style');
+    cursorStyle.textContent = `
+      @keyframes cursorPulse {
+        0% { transform: scale(1); opacity: 0.8; }
+        100% { transform: scale(3); opacity: 0; }
+      }
+    `;
+    document.head.appendChild(cursorStyle);
+  </script>
+</body>
+</html>
